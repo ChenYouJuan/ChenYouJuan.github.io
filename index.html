@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script>
+			
+			function getTime(){
+			var time ="";
+			var d = new Date()
+			time +=d.getFullYear();
+			time +='-';
+			
+			if(d.getMonth()+1<10){
+				time+='0'+(d.getMonth()+1);
+			}else{
+				time += (d.getMonth()+1);
+			}
+			time +='-';
+			
+			if(d.getDate()<10){
+				time+='0'+(d.getDate());
+			}else{
+				time += (d.getDate());
+			}
+			
+			if(d.getHours()>12){
+				if(d.getHours()<22){
+					time = time + " PM 0" + (d.getHours()-12);
+				}else{
+					time = time + " PM " + (d.getHours()-12);
+				}
+				
+			}else{
+				if(d.getHours()<10){
+					time = time + " AM 0" + d.getHours();
+				}else{
+					time = time + " AM " + d.getHours();
+				}
+				
+			}
+			
+			if(d.getMinutes()<10){
+				time = time + ":0" + d.getMinutes();
+			}else{
+				time = time + ":" + d.getMinutes();
+			}
+			
+			if(d.getSeconds()<10){
+				time = time + ":0" + d.getSeconds();
+			}else{
+				time = time + ":" + d.getSeconds();
+			}
+			
+			time += " 星期";
+			switch(d.getDay()){
+				case 0:
+					time += "日";
+					break;
+				case 1:
+					time += "一";
+					break;				
+				case 2:
+					time += "二";
+					break;
+				case 3:
+					time += "三";
+					break;
+				case 4:
+					time += "四";
+					break;
+				case 5:
+					time += "五";
+					break;
+				case 6:
+					time += "六";
+					break;
+				}
+				
+				var val = document.getElementById("tt");
+				val.innerText = time;
+				
+				//console.log(time)
+				//document.write(time);
+			}
+			
+			var v222 = setInterval("getTime()",1000);
+			
+			//clearInterval(v222);
+
+		</script>
+	</head>
+	<body style="text-align: center; background-color: #ccc;">
+		<span style="width: 400px; height: 800px; line-height: 400px; font-size: 100px;padding-top: 800px;" id= "tt"></span>
+	</body>
+</html>
