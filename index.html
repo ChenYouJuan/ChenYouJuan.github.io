@@ -10,6 +10,12 @@
 			var d = new Date()
 			time +=d.getFullYear();
 			time +='-';
+			var year = d.getFullYear();
+			var month = d.getMonth()+1;
+			var day = d.getDate();
+			var hour = d.getHours();
+			var minute = d.getMinutes();
+			var second = d.getSeconds();
 			
 			if(d.getMonth()+1<10){
 				time+='0'+(d.getMonth()+1);
@@ -24,21 +30,12 @@
 				time += (d.getDate());
 			}
 			
-			if(d.getHours()>12){
-				if(d.getHours()<22){
-					time = time + " PM 0" + (d.getHours()-12);
-				}else{
-					time = time + " PM " + (d.getHours()-12);
-				}
-				
+			if(d.getHours()<10){
+				time = time + " 0" + d.getHours();
 			}else{
-				if(d.getHours()<10){
-					time = time + " AM 0" + d.getHours();
-				}else{
-					time = time + " AM " + d.getHours();
-				}
-				
+				time = time + " "+d.getHours();
 			}
+			
 			
 			if(d.getMinutes()<10){
 				time = time + ":0" + d.getMinutes();
@@ -51,46 +48,61 @@
 			}else{
 				time = time + ":" + d.getSeconds();
 			}
-			
-			time += " 星期";
-			switch(d.getDay()){
-				case 0:
-					time += "日";
-					break;
-				case 1:
-					time += "一";
-					break;				
-				case 2:
-					time += "二";
-					break;
-				case 3:
-					time += "三";
-					break;
-				case 4:
-					time += "四";
-					break;
-				case 5:
-					time += "五";
-					break;
-				case 6:
-					time += "六";
-					break;
-				}
-				
 				var val = document.getElementById("tt");
 				val.innerText = time;
 				
+				if(day<2){
+					month -=1;
+				}
+				
+				if(month < 11){
+					year -= 1;
+				}
+				
+				
+				var val2 = document.getElementById("tt2");
+				val2.innerText = year - 2015 + " 年 "+ month 
+				+ " 月 " +day+" 天 "+ hour+" 小时 "+minute+" 分 " + second +" 秒 ";
 				//console.log(time)
 				//document.write(time);
+				var val3 = document.getElementById("tt3");
+				val3.innerText = "已经过去了 "+parseInt(((d.getTime()-1446393600000)/86400000)+1)+" 天";
+				//2015-11-02  1446393600000
+				//console.log(d.getTime()/86400000);
+				var val4 = document.getElementById("tt4");
+				val4.innerText = "已经过去了 "+parseInt(((d.getTime()-1446393600000)/3600000)+1)+" 小时";
+				var val5 = document.getElementById("tt5");
+				val5.innerText = "已经过去了 "+parseInt(((d.getTime()-1446393600000)/60000)+1)+" 分钟";
+				var val6 = document.getElementById("tt6");
+				val6.innerText = "已经过去了 "+parseInt(((d.getTime()-1446393600000)/1000))+" 秒";
 			}
-			
+			function getTime1(day){
+				re = /(\d{4})(?:-(\d{1,2})(?:-(\d{1,2}))?)?(?:\s+(\d{1,2}):(\d{1,2}):(\d{1,2}))?/.exec(day);
+    			return new Date(re[1],(re[2]||1)-1,re[3]||1,re[4]||0,re[5]||0,re[6]||0).getTime();
+			}
 			var v222 = setInterval("getTime()",1000);
 			
 			//clearInterval(v222);
-
 		</script>
+		<style>
+			.tett{
+				width: 400px;
+				height: 120px;
+				line-height: 100px;
+				font-size: 100px;
+				margin-top: 20px;
+			}
+		</style>
 	</head>
 	<body style="text-align: center; background-color: #ccc;">
-		<span style="width: 400px; height: 800px; line-height: 400px; font-size: 100px;padding-top: 800px;" id= "tt"></span>
+		
+		<span class="tett" id= "tt"></span><br/>
+		<span class="tett" id= "tt1">2015-11-02 00:00:00</span><br />
+		<span class="tett" id= "tt2"></span><br/>
+		<span class="tett" id= "tt3"></span><br/>
+		<span class="tett" id= "tt4"></span><br/>
+		<span class="tett" id= "tt5"></span><br/>
+		<span class="tett" id= "tt6"></span><br/>
+		
 	</body>
 </html>
