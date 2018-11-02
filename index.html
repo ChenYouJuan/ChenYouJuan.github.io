@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -50,19 +51,25 @@
 			}
 				var val = document.getElementById("tt");
 				val.innerText = time;
-				
-				if(day<2){
-					month -=1;
-				}
-				
+			
+			var year1 = year - 2015;
+			var month1 = month - 11;
+			var day1 = day - 2;
 				if(month < 11){
-					year -= 1;
+					year1 -= 1;
 				}
+			
+				if(day<2){
+					month1 -=1;
+					day1 = 30;
+				}
+				
+				
 				
 				
 				var val2 = document.getElementById("tt2");
-				val2.innerText = year - 2015 + " 年 "+ month 
-				+ " 月 " +day+" 天 "+ hour+" 小时 "+minute+" 分 " + second +" 秒 ";
+				val2.innerText = year1 + " 年 "+ month1 
+				+ " 月 " +day1+" 天 "+ hour+" 小时 "+minute+" 分 " + second +" 秒 ";
 				//console.log(time)
 				//document.write(time);
 				var val3 = document.getElementById("tt3");
