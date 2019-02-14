@@ -57,6 +57,7 @@
 			var day1 = day - 2;
 				if(month < 11){
 					year1 -= 1;
+					month1 = month + 1;
 				}
 			
 				if(day<2){
@@ -69,7 +70,9 @@
 				
 				var val2 = document.getElementById("tt2");
 				val2.innerText = year1 + " 年 "+ month1 
-				+ " 月 " +day1+" 天 "+ hour+" 小时 "+minute+" 分 " + second +" 秒 ";
+				+ " 月 " +day1+" 天 ";
+				var val21 = document.getElementById("tt21");
+				val21.innerText = hour+" 小时 "+minute+" 分 " + second +" 秒 ";
 				//console.log(time)
 				//document.write(time);
 				var val3 = document.getElementById("tt3");
@@ -95,9 +98,8 @@
 			.tett{
 				width: 400px;
 				height: 120px;
-				line-height: 100px;
+				line-height: 110px;
 				font-size: 100px;
-				margin-top: 20px;
 			}
 		</style>
 	</head>
@@ -106,6 +108,7 @@
 		<span class="tett" id= "tt"></span><br/>
 		<span class="tett" id= "tt1">2015-11-02 00:00:00</span><br />
 		<span class="tett" id= "tt2"></span><br/>
+		<span class="tett" id= "tt21"></span><br/>
 		<span class="tett" id= "tt3"></span><br/>
 		<span class="tett" id= "tt4"></span><br/>
 		<span class="tett" id= "tt5"></span><br/>
